@@ -31,7 +31,7 @@ public class Veiculo implements Comparable<Veiculo>{
         return "Id: " + id + ", Placa: " + placa;
     }
     @Override
-    public int compareTo(Veiculo outroPaciente) {
-        return this.getId().compareTo(outroPaciente.getId());
+    public int compareTo(Veiculo outroVeiculo) {
+        return this.getId().compareTo(outroVeiculo.getId());
     }
 }
