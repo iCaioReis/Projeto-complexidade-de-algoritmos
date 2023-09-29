@@ -34,6 +34,13 @@ public class App {
         //operacoes.imprimirVeiculos(new ArrayList<Veiculo>(leiturasPorVeiculo.keySet()));
 
         //Testando d.2
-        operacoes.imprimirLeituraPorVeiculo(leiturasPorVeiculo);
+        //operacoes.imprimirLeituraPorVeiculo(leiturasPorVeiculo);
+
+        //Testando d.3
+        //Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = operacoes.ordenar(leiturasPorVeiculo);
+        //operacoes.imprimirLeituraPorVeiculo(leiturasOrdenadas);
+
+        //Testando d.4
+
     }
 }

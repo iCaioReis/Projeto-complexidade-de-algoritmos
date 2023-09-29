@@ -14,6 +14,9 @@ public interface Operacoes<Veiculo, LeituraVeiculo> {
     // d.3
     public Map<Veiculo, List<LeituraVeiculo>> ordenar(Map<Veiculo, List<LeituraVeiculo>> leituras);
 
+    // d.4
+    public Map<Veiculo, List<LeituraVeiculo>> ordenarPorEficiencia(Map<Veiculo, List<LeituraVeiculo>> leituras);
+
     
 }
 

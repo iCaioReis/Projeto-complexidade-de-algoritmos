@@ -19,7 +19,7 @@ public class SensorImpl implements Sensor<LeituraVeiculo> {
 
         for (int i = 0; i < totalLeituras; i++) {
             int oscilacaoTempo = TEMPO_MEDI0_SEGUNDOS * randomizador.nextInt(OSCILACAO_MAXIMA_TEMPO)/100;
-            int oscilacaoDistancia = DISTANCIA_MEDIA_METROS * randomizador.nextInt(OSCILACAO_MAXIMA_DISTANCIA)/100;
+            int oscilacaoDistancia = DISTANCIA_MEDIA_METROS * randomizador.nextInt(OSCILACAO_MAXIMA_DISTANCIA)/1000;
 
             int tempo = (randomizador.nextBoolean()? TEMPO_MEDI0_SEGUNDOS + oscilacaoTempo: TEMPO_MEDI0_SEGUNDOS - oscilacaoTempo);
             int distancia = (randomizador.nextBoolean()? DISTANCIA_MEDIA_METROS + oscilacaoDistancia: DISTANCIA_MEDIA_METROS - oscilacaoDistancia);
