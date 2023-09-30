@@ -12,17 +12,17 @@ import br.edu.ifba.projeto.ordenadores.Ordenador;
  * https://www.delftstack.com/howto/java/merge-sort-arraylist-java/
  * 
  * como se trata de um merge sort, a complexidade eh NLogN, porque primeiramente
- * o algoritmo divide a colecao de dados a ser ordenada e, apos a divisao, 
+ * o algoritmo divide a colecao de dados a ser ordenada e, apos a divisao,
  * junta cada sub-colecao de dados para chegar ao ordenamento.
  */
 public class OrdenadorImpl extends Ordenador<LeituraVeiculo> {
-    
-    public OrdenadorImpl(List<LeituraVeiculo> leituras) {
-        super(leituras);
+
+    public OrdenadorImpl(List<LeituraVeiculo> leituras, String ordenarPor) {
+        super(leituras, ordenarPor);
     }
 
     public void ordenar() {
-        ordenar(0, leituras.size() - 1); 
+        ordenar(0, leituras.size() - 1);
     }
 
     public void ordenar(int inicio, int fim) {
@@ -42,8 +42,18 @@ public class OrdenadorImpl extends Ordenador<LeituraVeiculo> {
         int esquerda = inicio;
         int direita = meio + 1;
 
+        //String ordenarPor;
+        boolean condicao = false;
+
         while (esquerda <= meio && direita <= fim) {
-            if (leituras.get(esquerda).getSegundosGastos() <= leituras.get(direita).getSegundosGastos()) {
+
+            if ("segundos".equals(ordenarPor)) {
+                condicao = leituras.get(esquerda).getSegundosGastos() <= leituras.get(direita).getSegundosGastos();
+            } else if ("distancia".equals(ordenarPor)) {
+                condicao = (leituras.get(esquerda).getMetrosPercorridos() <= leituras.get(direita).getMetrosPercorridos());
+            }
+            
+            if (condicao) {
                 leiturasTemp.add(leituras.get(esquerda));
                 esquerda++;
             } else {
@@ -65,6 +75,12 @@ public class OrdenadorImpl extends Ordenador<LeituraVeiculo> {
         for (int i = 0; i < leiturasTemp.size(); inicio++) {
             leituras.set(inicio, leiturasTemp.get(i++));
         }
+    }
+
+    @Override
+    public void ordenarPorEficiencia() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'ordenarPorEficiencia'");
     }
 
 }

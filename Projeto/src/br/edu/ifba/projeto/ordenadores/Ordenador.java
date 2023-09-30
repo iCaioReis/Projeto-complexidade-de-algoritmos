@@ -7,9 +7,11 @@ import java.util.List;
 public abstract class Ordenador<Sensor> {
 
     protected List<Sensor> leituras = null;
+    protected String ordenarPor = null;
 
-    public Ordenador(List<Sensor> leituras) {
+    public Ordenador(List<Sensor> leituras, String ordenarPor) {
         this.leituras = leituras;
+        this.ordenarPor = ordenarPor;
     }
 
     public List<Sensor> getLeituras() {
@@ -17,4 +19,6 @@ public abstract class Ordenador<Sensor> {
     }
     
     public abstract void ordenar();
+
+    public abstract void ordenarPorEficiencia();
 }

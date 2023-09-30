@@ -7,10 +7,11 @@ import java.util.Random;
 import br.edu.ifba.projeto.sensor.Sensor;
 
 public class SensorImpl implements Sensor<LeituraVeiculo> {
-    private static final int TEMPO_MEDI0_SEGUNDOS = 150; //2 MINUTOS E 30 SEGUNDOS
-    private static final int OSCILACAO_MAXIMA_TEMPO = 30;
-    private static final int DISTANCIA_MEDIA_METROS = 3000; //2 MINUTOS E 30 SEGUNDOS
-    private static final int OSCILACAO_MAXIMA_DISTANCIA = 1000;
+
+    private static final int SEGUNDOS_MINIMOS = 100; //1 MINUTOS E 40 SEGUNDOS
+    private static final int SEGUNDOS_MAXIMOS = 200; // 3 MIN E 20 SEGUNDOS
+    private static final int METROS_MINIMOS = 2000; // 2 KM
+    private static final int METROS_MAXIMOS = 4000; // 4 KM
 
     @Override
     public List<LeituraVeiculo> gerarLeituras(int totalLeituras) {
@@ -18,11 +19,8 @@ public class SensorImpl implements Sensor<LeituraVeiculo> {
         List<LeituraVeiculo> leituras = new ArrayList<>();
 
         for (int i = 0; i < totalLeituras; i++) {
-            int oscilacaoTempo = TEMPO_MEDI0_SEGUNDOS * randomizador.nextInt(OSCILACAO_MAXIMA_TEMPO)/100;
-            int oscilacaoDistancia = DISTANCIA_MEDIA_METROS * randomizador.nextInt(OSCILACAO_MAXIMA_DISTANCIA)/1000;
-
-            int tempo = (randomizador.nextBoolean()? TEMPO_MEDI0_SEGUNDOS + oscilacaoTempo: TEMPO_MEDI0_SEGUNDOS - oscilacaoTempo);
-            int distancia = (randomizador.nextBoolean()? DISTANCIA_MEDIA_METROS + oscilacaoDistancia: DISTANCIA_MEDIA_METROS - oscilacaoDistancia);
+            int tempo = randomizador.nextInt(SEGUNDOS_MAXIMOS - SEGUNDOS_MINIMOS + 1) + SEGUNDOS_MINIMOS;
+            int distancia = randomizador.nextInt(METROS_MAXIMOS - METROS_MINIMOS + 1) + METROS_MINIMOS;
 
             LeituraVeiculo leitura = new LeituraVeiculo(i + 1, tempo, distancia);
             leituras.add(leitura);

@@ -12,7 +12,7 @@ public interface Operacoes<Veiculo, LeituraVeiculo> {
     public void imprimirLeituraPorVeiculo(Map<Veiculo, List<LeituraVeiculo>> leituras);
 
     // d.3
-    public Map<Veiculo, List<LeituraVeiculo>> ordenar(Map<Veiculo, List<LeituraVeiculo>> leituras);
+    public Map<Veiculo, List<LeituraVeiculo>> ordenar(Map<Veiculo, List<LeituraVeiculo>> leituras, String ordenarPor);
 
     // d.4
     public Map<Veiculo, List<LeituraVeiculo>> ordenarPorEficiencia(Map<Veiculo, List<LeituraVeiculo>> leituras);

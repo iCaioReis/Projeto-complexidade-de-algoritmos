@@ -20,13 +20,10 @@ public class OperacoesImpl implements Operacoes<Veiculo, LeituraVeiculo> {
     @Override
     public void imprimirLeituraPorVeiculo(Map<Veiculo, List<LeituraVeiculo>>  leituras) {
         for (Veiculo veiculo: leituras.keySet()) {
-            System.out.println("");
-            System.out.println("------------------------------------");
-            System.out.println("");
+            System.out.println("\n------------------------------------\n");
             System.out.println("Leituras do veiculo com placa: " + veiculo.getPlaca());
             for (LeituraVeiculo leitura: leituras.get(veiculo)) {
-                System.out.println("");
-                System.out.println(veiculo);
+                System.out.println("\n" + veiculo);
                 System.out.println("Metros Percorridos: " + leitura.metrosPercorridos);
                 System.out.println("Segundos Gastos: " + leitura.segundosGastos);
             }
@@ -34,14 +31,14 @@ public class OperacoesImpl implements Operacoes<Veiculo, LeituraVeiculo> {
     }
     //D.3
     @Override
-    public Map<Veiculo, List<LeituraVeiculo>> ordenar(Map<Veiculo, List<LeituraVeiculo>> leituras) {
+    public Map<Veiculo, List<LeituraVeiculo>> ordenar(Map<Veiculo, List<LeituraVeiculo>> leituras, String ordenarPor) {
         Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = new TreeMap<>();
 
         for (Veiculo veiculo: leituras.keySet()) {
             System.out.println("ordenando as leituras do veiculo: " + veiculo.getPlaca());
 
             List<LeituraVeiculo> leiturasParaOrdenar = leituras.get(veiculo);
-            Ordenador<LeituraVeiculo> ordenador = new OrdenadorImpl(leiturasParaOrdenar);
+            Ordenador<LeituraVeiculo> ordenador = new OrdenadorImpl(leiturasParaOrdenar, ordenarPor);
             ordenador.ordenar();
 
             leiturasOrdenadas.put(veiculo, leiturasParaOrdenar);
@@ -56,13 +53,17 @@ public class OperacoesImpl implements Operacoes<Veiculo, LeituraVeiculo> {
         Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = new TreeMap<>();
 
         for (Veiculo veiculo: leituras.keySet()) {
-            System.out.println("ordenando as leituras do veiculo: " + veiculo.getPlaca());
+            System.out.println("\n\nSoma do veiculo: " + veiculo.getPlaca());
+            int somaMetrosTotal = 0;
+            int somaSegundosTotal = 0;
 
-            List<LeituraVeiculo> leiturasParaOrdenar = leituras.get(veiculo);
-            Ordenador<LeituraVeiculo> ordenador = new OrdenadorImpl(leiturasParaOrdenar);
-            ordenador.ordenar();
-
-            leiturasOrdenadas.put(veiculo, leiturasParaOrdenar);
+            for (int i=0; i < leituras.get(veiculo).size(); i++){
+                somaMetrosTotal += leituras.get(veiculo).get(i).getMetrosPercorridos();
+                somaSegundosTotal += leituras.get(veiculo).get(i).getSegundosGastos();
+            }
+            System.out.println("Metros totais: " + somaMetrosTotal);
+            System.out.println("Seguntos totais: " + somaSegundosTotal);
+            System.out.println(somaMetrosTotal/somaSegundosTotal * 3.6 + "Km/h");
         }
 
         return leiturasOrdenadas;
