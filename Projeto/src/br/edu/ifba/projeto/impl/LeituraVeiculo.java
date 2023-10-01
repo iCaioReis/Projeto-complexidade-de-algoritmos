@@ -1,4 +1,5 @@
 package br.edu.ifba.projeto.impl;
+//Classe para simular a leitura do veículo, que de forma geral, é constante O(1).
 
 public class LeituraVeiculo {
 

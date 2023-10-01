@@ -3,8 +3,10 @@ package br.edu.ifba.projeto.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import br.edu.ifba.projeto.sensor.Sensor;
+
+// O algoritmo abaixo têm uma complexidade linear O(n)por conta do For, pois
+// tempo de execução aumenta linearmente com o número de leituras a serem geradas.
 
 public class SensorImpl implements Sensor<LeituraVeiculo> {
 

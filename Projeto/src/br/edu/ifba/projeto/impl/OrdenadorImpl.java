@@ -11,9 +11,9 @@ import br.edu.ifba.projeto.ordenadores.Ordenador;
  * o algoritmo foi adaptado a partir do que se encontra disponibilizado em:
  * https://www.delftstack.com/howto/java/merge-sort-arraylist-java/
  * 
- * como se trata de um merge sort, a complexidade eh NLogN, porque primeiramente
- * o algoritmo divide a colecao de dados a ser ordenada e, apos a divisao,
- * junta cada sub-colecao de dados para chegar ao ordenamento.
+ * como se trata de um merge sort, a complexidade eh NLogN, pois o algoritmos
+ * separaos dados e cria uma sub-coleção, realocando os dados de forma ordenada.
+ * 
  */
 public class OrdenadorImpl extends Ordenador<LeituraVeiculo> {
 
@@ -41,8 +41,6 @@ public class OrdenadorImpl extends Ordenador<LeituraVeiculo> {
 
         int esquerda = inicio;
         int direita = meio + 1;
-
-        //String ordenarPor;
         boolean condicao = false;
 
         while (esquerda <= meio && direita <= fim) {
@@ -76,11 +74,4 @@ public class OrdenadorImpl extends Ordenador<LeituraVeiculo> {
             leituras.set(inicio, leiturasTemp.get(i++));
         }
     }
-
-    @Override
-    public void ordenarPorEficiencia() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ordenarPorEficiencia'");
-    }
-
 }

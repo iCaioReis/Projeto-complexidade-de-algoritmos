@@ -1,4 +1,5 @@
 package br.edu.ifba.projeto.impl;
+//Classe para simular os veículos, que de forma geral, é constante O(1).
 
 public class Veiculo implements Comparable<Veiculo>{
     private String id;
@@ -24,7 +25,6 @@ public class Veiculo implements Comparable<Veiculo>{
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-
 
     @Override
     public String toString() {

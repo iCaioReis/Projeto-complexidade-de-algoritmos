@@ -2,7 +2,7 @@ package br.edu.ifba.projeto.ordenadores;
 import java.util.List;
 /**
  * classe que determina as funcionalidades do ordenador, 
- * cuja complexidade, de forma geral, eh constante, O(1)
+ * cuja complexidade, de forma geral, é constante, O(1), 
  */
 public abstract class Ordenador<Sensor> {
 
@@ -19,6 +19,4 @@ public abstract class Ordenador<Sensor> {
     }
     
     public abstract void ordenar();
-
-    public abstract void ordenarPorEficiencia();
 }

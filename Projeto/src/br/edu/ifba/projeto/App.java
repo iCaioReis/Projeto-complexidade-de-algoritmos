@@ -11,43 +11,63 @@ import br.edu.ifba.projeto.impl.OperacoesImpl;
 import br.edu.ifba.projeto.impl.Veiculo;
 import br.edu.ifba.projeto.sensor.Sensor;
 import br.edu.ifba.projeto.operacoes.Operacoes;
+import br.edu.ifba.projeto.impl.Filial;
 
 public class App {
-    private static final int TOTAL_DE_VEICULOS = 20;
-    private static final int TOTAL_DE_LEITURAS = 100;
+    //Configurações para gerar dados
+    private static final int TOTAL_DE_FILIAIS = 2;
+    private static final int TOTAL_DE_VEICULOS = 5;
+    private static final int TOTAL_DE_LEITURAS = 10;
+
+    // Algoritmo de complexidade exponencial O(n^2), pois hé um for aninhado a outro for.
     public static void main(String[] args) throws Exception {
 
         Sensor<LeituraVeiculo> sensor = new SensorImpl();
         Operacoes<Veiculo, LeituraVeiculo> operacoes = new OperacoesImpl();
-        
-        Map<Veiculo, List<LeituraVeiculo>> leiturasPorVeiculo = new TreeMap<>();
 
-        for (int i = 0; i < TOTAL_DE_VEICULOS; i++) {
+        Map<Filial, Map<Veiculo, List<LeituraVeiculo>>> filiais = new TreeMap<>();
+        // Map<Veiculo, List<LeituraVeiculo>> leiturasPorVeiculo = new TreeMap<>();
+
+        for (int i = 0; i < TOTAL_DE_FILIAIS; i++) {
             String id = (i + 1) + "";
+            Map<Veiculo, List<LeituraVeiculo>> leiturasPorVeiculo = new TreeMap<>();
 
-            leiturasPorVeiculo.put(new Veiculo(id, "Placa #" + id), 
-                sensor.gerarLeituras(TOTAL_DE_LEITURAS)
-            );
+            for (int j = 0; j < TOTAL_DE_VEICULOS; j++) {
+                String idVeiculo = (j + 1) + "";
+
+                leiturasPorVeiculo.put(new Veiculo(idVeiculo, "Placa #" + idVeiculo), sensor.gerarLeituras(TOTAL_DE_LEITURAS));
+            }
+            filiais.put(new Filial(id, "Filial #" + id), leiturasPorVeiculo);
+        }
+        
+        // Testando d.1
+        //operacoes.imprimirVeiculos(filiais);
+
+        // Testando d.2
+        operacoes.imprimirLeituraPorVeiculo(filiais);
+
+        // Testando d.3 - Ordenando segundos ou distancia
+
+        /*
+        Map<Filial, Map<Veiculo, List<LeituraVeiculo>>> leiturasOrdenadasFiliais = new TreeMap<>();
+
+        for (Map.Entry<Filial, Map<Veiculo, List<LeituraVeiculo>>> filialEntry : filiais.entrySet()) {
+            Filial filial = filialEntry.getKey();
+            Map<Veiculo, List<LeituraVeiculo>> leiturasPorVeiculo = filialEntry.getValue();
+
+            System.out.println("Filial: " + filial.getNome());
+
+            // Ordenar as leituras por veículo
+            Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = operacoes.ordenar(leiturasPorVeiculo, "distancia"); //"segundos" ou "distancia"
+
+            leiturasOrdenadasFiliais.put(new Filial(filial.getId(), filial.getNome()), leiturasOrdenadas);
         }
 
-        //Testando d.1
-        //operacoes.imprimirVeiculos(new ArrayList<Veiculo>(leiturasPorVeiculo.keySet()));
+        // Imprimir as leituras por veículo
+        operacoes.imprimirLeituraPorVeiculo(leiturasOrdenadasFiliais);
+        */
 
-        //Testando d.2
-        operacoes.imprimirLeituraPorVeiculo(leiturasPorVeiculo);
-
-        //Testando d.3.1 - Ordenando por tempo em segundos
-        //Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = operacoes.ordenar(leiturasPorVeiculo, "segundos");
-        //operacoes.imprimirLeituraPorVeiculo(leiturasOrdenadas);
-
-        //Testando d.3.2 - Ordenando por distancia em metros
-        //Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = operacoes.ordenar(leiturasPorVeiculo, "distancia");
-        //operacoes.imprimirLeituraPorVeiculo(leiturasOrdenadas);
-
-        //Testando d.4
-        //Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = operacoes.ordenarPorEficiencia(leiturasPorVeiculo);
-        //System.out.println(leiturasOrdenadas);
-
-
+        // Testando d.4
+        operacoes.exibirEficiencia(filiais);
     }
 }
