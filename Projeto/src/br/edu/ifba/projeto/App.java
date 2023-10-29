@@ -12,6 +12,7 @@ import br.edu.ifba.projeto.impl.Veiculo;
 import br.edu.ifba.projeto.sensor.Sensor;
 import br.edu.ifba.projeto.operacoes.Operacoes;
 import br.edu.ifba.projeto.impl.Filial;
+import java.util.Map.Entry;
 
 public class App {
     //Configurações para gerar dados
@@ -19,6 +20,7 @@ public class App {
     private static final int TOTAL_DE_VEICULOS = 5;
     private static final int TOTAL_DE_LEITURAS = 10;
 
+    
     // Algoritmo de complexidade exponencial O(n^2), pois hé um for aninhado a outro for.
     public static void main(String[] args) throws Exception {
 

@@ -52,7 +52,7 @@ public class OperacoesImpl implements Operacoes<Veiculo, LeituraVeiculo> {
         }
     }
     //D.3
-    // complexidade linear O(n)por conta do único For.
+    // complexidade linear O(N*logN)por haver um For que chama o método ordenar de complexidade O(NlogN).
     @Override
     public Map<Veiculo, List<LeituraVeiculo>> ordenar(Map<Veiculo, List<LeituraVeiculo>> leituras, String ordenarPor) {
         Map<Veiculo, List<LeituraVeiculo>> leiturasOrdenadas = new TreeMap<>();
